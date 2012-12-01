@@ -7,12 +7,11 @@
   </head>
   <body>
     <h1>Andrew Gerrand</h1>
-    <h2>Miscellaneous stuff</h2>
     {{range .}}
     <p>
-      <tt>{{.Time.Format "02 Jan 2006"}}</tt>
       <a href="{{.Path}}">{{.Title}}</a>
-      {{.Subtitle}}
+      {{.Time.Format "2 January 2006"}}
+      {{with .Subtitle}}({{.}}){{end}}
     </p>
     {{end}}
   </body>

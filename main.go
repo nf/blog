@@ -38,6 +38,7 @@ func main() {
 		docPaths[d.Path] = d
 	}
 	http.HandleFunc("/", handler)
+	http.Handle("/static/", http.FileServer(http.Dir(".")))
 	log.Fatal(http.ListenAndServe(*httpAddr, nil))
 }
 

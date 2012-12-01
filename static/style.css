@@ -1,0 +1,7 @@
+body {
+	font-family: sans-serif;
+}
+h1 { font-size: 18pt; font-weight: bold; }
+h2 { font-size: 18pt; font-weight: normal; }
+.article h1 { font-size: 14pt; font-weight: bold; }
+.article h2 { font-size: 14pt; font-weight: normal; }
