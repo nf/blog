@@ -1,0 +1,36 @@
+{/*
+This is the action template.
+It determines how the formatting actions are rendered.
+*/}
+
+{{define "section"}}
+  <h{{len .Number}} id="TOC_{{.FormattedNumber}}">{{.Title}}</h{{len .Number}}>
+  {{range .Elem}}{{.HTML $.Doc.Template}}{{end}}
+{{end}}
+
+{{define "list"}}
+  <ul>
+  {{range .Bullet}}
+    <li>{{style .}}</li>
+  {{end}}
+  </ul>
+{{end}}
+
+{{define "text"}}
+  {{if .Pre}}
+  <pre>{{range .Lines}}{{.}}{{end}}</pre>
+  {{else}}
+  <p>
+    {{range $i, $l := .Lines}}{{if $i}}{{template "newline"}}
+    {{end}}{{style $l}}{{end}}
+  </p>
+  {{end}}
+{{end}}
+
+{{define "code"}}
+  <pre>{{code .}}</pre>
+{{end}}
+
+{{define "image"}}<p class="image">{{image .File .Args}}</p>{{end}}
+      
+{{define "link"}}<p class="link">{{link .URL .Args}}</p>{{end}}

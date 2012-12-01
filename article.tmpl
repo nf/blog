@@ -1,0 +1,42 @@
+{/* This is the article template. It defines how articles are formatted. */}
+
+{{define "root"}}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{.Title}}</title>
+    <link type="text/css" rel="stylesheet" href="/static/style.css">
+    <meta charset='utf-8'>
+  </head>
+
+  <body>
+    <h1>{{.Title}}</h1>
+    {{with .Subtitle}}<h2>{{.}}</h2>{{end}}
+    {{with $toc := .Sections}}
+    <!--<div id="toc">
+      {{range .}}{{template "TOC" .}}{{end}}
+    </div>-->
+    {{end}}
+    <div class="article">
+      {{range .Sections}}
+        {{.HTML $.Template}}
+      {{end}}{{/* of Section block */}}
+    </div>
+  </body>
+</html>
+{{end}}
+
+{{define "TOC"}}
+  <ul>
+    <li><a href="#TOC_{{.FormattedNumber}}">{{.Title}}</a></li>
+    {{with .Sections}}
+    <ul>
+      {{range .}}{{template "TOC" .}}{{end}}
+    </ul>
+    {{end}}
+  </ul>
+{{end}}
+
+{{define "newline"}}
+{{/* No automatic line break. Paragraphs are free-form. */}}
+{{end}}
